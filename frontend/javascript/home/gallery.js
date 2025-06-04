@@ -1,4 +1,5 @@
 // importamos modulos externos de javascript
+import { URI } from "../uri.js";
 import { fetchComments, fetchImages } from "./services/api.js";
 
 export async function loadGallery(users, onlyMine = false) {
@@ -41,7 +42,7 @@ export async function loadGallery(users, onlyMine = false) {
         card.innerHTML = `
             <div class='card hoverable z-depth-3'>
                 <div class='card-image'>
-                    <img class='materialboxed' src='http://localhost:5000/static/uploads/${img.filename}' />
+                    <img class='materialboxed' src='${URI}/static/uploads/${img.filename}' />
                 </div>
                 <div class='card-content'>
                     <span class='card-title'>Subido por: <strong>${uploaderName}</strong></span>

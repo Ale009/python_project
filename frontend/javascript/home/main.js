@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function loadData(onlyMine = false) {
         fetchUsers()
         .then(users => {
-            console.log(users);
-            
             // Obtenemos el elemento html que vamos a rellenar
             const greeting = document.getElementById("user-greeting");
             // De todos los usuarios encontramos al que sea el propio

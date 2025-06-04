@@ -1,4 +1,5 @@
-const URL = 'http://localhost:5000/api';
+import { URI } from '../../uri.js'; 
+const URL = URI + '/api';
 
 // Export: Hace que pueda llamarse desde otros archivos de javascript
 // Async: Hace a la función asincrona
@@ -18,7 +19,7 @@ export async function uploadImage(file, userId) {
     formData.append('image', file);
     formData.append('user_id', userId);
 
-    const res = await fetch('http://localhost:5000/api/upload', {
+    const res = await fetch(`${URI}/api/upload`, {
         method: 'POST',
         body: formData
     });
@@ -27,7 +28,7 @@ export async function uploadImage(file, userId) {
 }
 
 export async function fetchComments(imageId, userId, text) {
-    const res = await fetch(`http://localhost:5000/api/comment/${imageId}`, {
+    const res = await fetch(`${URI}/api/comment/${imageId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
