@@ -39,10 +39,17 @@ export async function loadGallery(users, onlyMine = false) {
         // <div class='col s12 m6 l4'></div>
         const card = document.createElement('div');
         card.className = 'col s12 m6 l4';
+<<<<<<< HEAD
+        card.innerHTML = `
+            <div class='card hoverable z-depth-3'>
+                <div class='card-image'>
+                    <img class='materialboxed' src='${URI}/static/uploads/${img.filename}' />
+=======
         card.innerHTML = /*html*/ `
             <div class='card hoverable z-depth-3'>
                 <div class='card-image'>
                     <img class='materialboxed' src='data:image/jpeg;base64,${img.filedata}' />
+>>>>>>> dev
                 </div>
                     <div class='card-content'>
                         <div class='like-section'>   

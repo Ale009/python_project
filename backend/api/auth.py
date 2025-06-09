@@ -1,3 +1,30 @@
+<<<<<<< HEAD
+from flask import Blueprint, current_app, request, jsonify
+import json
+
+auth_bp = Blueprint('auth', __name__)
+
+# Carga el archivo JSON de base de datos
+def load_db():
+    # app.config['DATABASE_FILE']
+    with open(current_app.config['DATABASE_FILE']) as f:
+        return json.load(f)
+
+def save_db(data):
+    with open(current_app.config['DATABASE_FILE'], 'w') as f:
+        json.dump(data, f, indent=2)
+
+@auth_bp.route('/login', methods=["POST"])
+def login():
+    data = request.json # Datos que vienen de postman (cliente)
+    db = load_db() # Datos que estan en el servidor (DB)
+    for user in db["users"]:
+        if user['username'] == data["username"] and user["password"] == data["password"]:
+            return jsonify({ 'mensaje': 'Login exitoso', 'user_id': user["id"] }), 200
+        
+    return jsonify({ 'error': 'Credenciales inválidas' }), 401
+
+=======
 from flask import Blueprint, request, jsonify
 import json
 import bcrypt
@@ -28,6 +55,7 @@ def login():
     return jsonify({ 'error': 'Credenciales inválidas' }), 401
 
 """ 
+>>>>>>> dev
 @auth_bp.route('/register', methods=["POST"])
 def register():
     data = request.json
@@ -44,9 +72,17 @@ def register():
     db["users"].append(newUser)
     save_db(db)
     return jsonify({ 'message:' 'Registrado correctamente' }), 201
+<<<<<<< HEAD
+
+@auth_bp.route('/users', methods=["GET"])
+def get_users():
+    db = load_db()
+    return jsonify(db["users"]), 200
+=======
 """
 
 @auth_bp.route('/users', methods=["GET"])
 def get_users():
     users = query_db("SELECT id, username FROM users")
     return jsonify([dict(user) for user in users]), 200
+>>>>>>> dev
